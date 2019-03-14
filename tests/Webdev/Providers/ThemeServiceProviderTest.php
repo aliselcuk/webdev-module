@@ -24,9 +24,12 @@ class ThemeServiceProviderTest extends TestCase
     /** @test */
     function adds_theme_view_hint_for_the_active_theme_when_port_is_detected()
     {
-        ComposerLoader::load(base_path('tests/Platform/__fixtures__/starter-theme'));
+        $addon = sv_addon('superv.modules.webdev');
+
+        ComposerLoader::load($addon->realPath('tests/__fixtures__/starter-theme'));
+
         app(Installer::class)
-            ->setPath('tests/Platform/__fixtures__/starter-theme')
+            ->setPath($addon->path('tests/__fixtures__/starter-theme'))
             ->setSlug('superv.themes.starter')
             ->install();
 
@@ -35,7 +38,7 @@ class ThemeServiceProviderTest extends TestCase
         PortDetectedEvent::dispatch(\Hub::get('web'));
 
         $hints = $this->app['view']->getFinder()->getHints();
-        $this->assertContains(base_path('tests/Platform/__fixtures__/starter-theme/resources/views'), $hints['theme']);
+        $this->assertContains($addon->realPath('tests/__fixtures__/starter-theme/resources/views'), $hints['theme']);
         $this->assertDirectoryExists(reset($hints['theme']));
     }
 
@@ -53,9 +56,11 @@ class ThemeServiceProviderTest extends TestCase
     /** @test */
     function dispatches_event_when_a_theme_is_activated()
     {
-        ComposerLoader::load(base_path('tests/Platform/__fixtures__/starter-theme'));
+        $addon = sv_addon('superv.modules.webdev');
+
+        ComposerLoader::load($addon->realPath('tests/__fixtures__/starter-theme'));
         app(Installer::class)
-            ->setPath('tests/Platform/__fixtures__/starter-theme')
+            ->setPath($addon->path('tests/__fixtures__/starter-theme'))
             ->setSlug('superv.themes.starter')
             ->install();
 

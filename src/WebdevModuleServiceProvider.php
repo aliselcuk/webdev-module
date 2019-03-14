@@ -4,6 +4,9 @@ use SuperV\Platform\Domains\Addon\AddonServiceProvider;
 
 class WebdevModuleServiceProvider extends AddonServiceProvider
 {
+    protected $providers = [
+        ThemeServiceProvider::class
+    ];
     public function register()
     {
         parent::register();
