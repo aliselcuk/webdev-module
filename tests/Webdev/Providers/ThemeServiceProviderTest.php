@@ -24,7 +24,7 @@ class ThemeServiceProviderTest extends TestCase
     /** @test */
     function adds_theme_view_hint_for_the_active_theme_when_port_is_detected()
     {
-        $addon = sv_addon('superv.modules.webdev');
+        $addon = sv_addons('superv.modules.webdev');
 
         ComposerLoader::load($addon->realPath('tests/__fixtures__/starter-theme'));
 
@@ -56,7 +56,7 @@ class ThemeServiceProviderTest extends TestCase
     /** @test */
     function dispatches_event_when_a_theme_is_activated()
     {
-        $addon = sv_addon('superv.modules.webdev');
+        $addon = sv_addons('superv.modules.webdev');
 
         ComposerLoader::load($addon->realPath('tests/__fixtures__/starter-theme'));
         app(Installer::class)
