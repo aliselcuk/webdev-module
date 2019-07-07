@@ -15,14 +15,12 @@ class ThemeServiceProviderTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    function get_registered_with_platform()
+    function test__get_registered_with_platform()
     {
         $this->assertProviderRegistered(\SuperV\Modules\Webdev\ThemeServiceProvider::class);
     }
 
-    /** @test */
-    function adds_theme_view_hint_for_the_active_theme_when_port_is_detected()
+    function test__adds_theme_view_hint_for_the_active_theme_when_port_is_detected()
     {
         $addon = sv_addons('superv.modules.webdev');
 
@@ -42,8 +40,7 @@ class ThemeServiceProviderTest extends TestCase
         $this->assertDirectoryExists(reset($hints['theme']));
     }
 
-    /** @test */
-    function does_not_add_any_hint_if_port_has_no_theme()
+    function test__does_not_add_any_hint_if_port_has_no_theme()
     {
         $this->setUpPort('web', 'superv.io', $theme = null);
 
@@ -53,8 +50,7 @@ class ThemeServiceProviderTest extends TestCase
         $this->assertFalse(array_key_exists('theme', $hints));
     }
 
-    /** @test */
-    function dispatches_event_when_a_theme_is_activated()
+    function test__dispatches_event_when_a_theme_is_activated()
     {
         $addon = sv_addons('superv.modules.webdev');
 
@@ -74,8 +70,7 @@ class ThemeServiceProviderTest extends TestCase
         });
     }
 
-    /** @test */
-    function throws_exception_if_ports_theme_is_not_found()
+    function test__throws_exception_if_ports_theme_is_not_found()
     {
         $this->expectException(AddonNotFoundException::class);
 

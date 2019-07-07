@@ -10,8 +10,7 @@ class TwigServiceProviderTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    function is_registered_if_enabled_by_config()
+    function test__is_registered_if_enabled_by_config()
     {
         config()->set('superv.twig.enabled', true);
 
