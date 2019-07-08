@@ -30,6 +30,12 @@
         "optimize-autoloader": true
     },
     "prefer-stable": true,
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:superv/assetic.git"
+        }
+    ]
 }
 
